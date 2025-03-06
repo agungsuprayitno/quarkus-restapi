@@ -4,6 +4,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import restApi.dto.CreatePostRequest;
+import restApi.dto.UpdatePostRequest;
 import restApi.models.Post;
 import restApi.services.CreatePostService;
 import restApi.services.DeletePostService;
@@ -36,15 +38,15 @@ public class PostResource {
 
     @POST
     @Transactional
-    public Post create(Post newPost) {
+    public Post create(CreatePostRequest newPost) {
         return createPostService.create(newPost);
     }
 
     @PUT
     @Path("/{id}")
     @Transactional
-    public Post updateById(@PathParam("id") Long id, Post post) {
-        return updatePostService.updatePostById(id, post);
+    public Post updateById(@PathParam("id") Long id, UpdatePostRequest updatedPost) {
+        return updatePostService.updatePostById(id, updatedPost);
     }
 
     @DELETE
